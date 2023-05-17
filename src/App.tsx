@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { NavBar } from './components/NavBar'
 import { useAuthentication } from './contexts/AuthenticationContext'
-import { EmailVerification } from './pages/EmailVerification'
 import { Home } from './pages/Home'
 import { Login } from './pages/Login'
 import { Plant } from './pages/Plant'
@@ -11,8 +10,9 @@ import { SetupTutorial } from './pages/SetupTutorial'
 import { Signout } from './pages/Signout'
 import { Signup } from './pages/Signup'
 import { Timestamps } from './pages/Timestamps'
-import { VerifyEmail } from './pages/VerifyEmail'
 import { Periodstamps } from './pages/Periodstamps'
+import { VerifyFirst } from './pages/Verify/First'
+import { VerifySecond } from './pages/Verify/Second'
 
 function App() {
   document.title = 'PlantPal'
@@ -24,8 +24,8 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/verify' element={<EmailVerification />} />
-        <Route path='/verify/:id' element={<VerifyEmail />} />
+        <Route path='/verify' element={<VerifyFirst />} />
+        <Route path='/verify/:id' element={<VerifySecond />} />
         <Route path='*' element={<Navigate to='/login' />} />
       </Routes>
     )

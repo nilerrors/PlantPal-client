@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Container, Form, Row, Col, Card } from 'react-bootstrap'
 import { Button } from '../components/Button'
 import { useAuthentication } from '../contexts/AuthenticationContext'
@@ -14,7 +14,9 @@ export function Signup() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [message, setMessage] = useState<string | null>(null)
+  const [userId, setUserId] = useState<string>()
 
+  const navigate = useNavigate()
   const { useApi } = useAuthentication()
 
   const form = useForm(
@@ -41,6 +43,7 @@ export function Signup() {
             setError(data?.detail ?? data?.message ?? 'Error')
           } else {
             setMessage(data?.message ?? data?.detail ?? '')
+            setUserId(data.user?.id)
           }
         } catch (error: any) {
           setError(error?.message ?? error?.detail ?? 'Error')
